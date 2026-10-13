@@ -1,0 +1,8 @@
+Package: munichportfolio
+Type: Project
+Title: Munich Open Data Analysis
+Version: 0.1.0
+Authors@R: person("Yifan", "Yang", role = c("aut", "cre"))
+Description: Course-based descriptive analysis of Munich cycling and Oktoberfest prices.
+Imports: readr, dplyr, ggplot2
+Encoding: UTF-8
