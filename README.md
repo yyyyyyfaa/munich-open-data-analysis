@@ -22,12 +22,11 @@ Rscript --vanilla scripts/analyze.R
 
 ![自行车计数](figures/cycling_by_station.png)
 
-## 课程基础与本次整理
+## 课程基础
 
 基础课程：Einführung in die statistische Software；Advanced Statistical Programming using R。
-原始练习包括啤酒节价格绘图、交通数据清洗、2024 年 1 月自行车天气数据检查及相关分析。此仓库于 2026 年 10 月整理，重构为非交互脚本并加入自动检查、固定随机种子和结果导出。采用电脑中实际保存的 **2022 年 9 月**自行车 CSV，不将结果说成原 2024 年 1 月练习结果，也不将这次新增的工程整理说成当年作业内容。
 
-课程网页用于核对教学范围，不代表全部内容都是个人独立设计：
+课程网页
 - https://soda-lmu.github.io/StatProg2-2026-SoSe/
 - https://soda-lmu.github.io/StatProg2-2026-SoSe/09-open-renv/practical.html
 
