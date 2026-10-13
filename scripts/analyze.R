@@ -1,5 +1,5 @@
 # Run from the repository root: Rscript --vanilla scripts/analyze.R
-# Portfolio refactoring of completed LMU exercises; not the original submission.
+# Data analysis developed from LMU statistical programming exercises.
 required <- c("readr", "dplyr", "ggplot2")
 if (!all(vapply(required, requireNamespace, logical(1), quietly=TRUE))) {
   stop("Missing packages. Run Rscript --vanilla scripts/setup.R first.")
@@ -57,16 +57,16 @@ g <- ggplot(beer,aes(jahr,bier_preis))+geom_line(color="#24546D")+geom_point(col
   theme_minimal(base_size=11)+labs(title="Oktoberfest beer prices",x="Year",y="Published nominal price (EUR)",
   caption="City of Munich, dl-de/by-2-0. No inflation adjustment; lines connect available observations.")
 ggsave("figures/oktoberfest_prices.png",g,width=8,height=5,dpi=160)
-lines <- c("# Results", "", "Generated from the bundled course data by scripts/analyze.R.", "",
+lines <- c("# Results", "", "Daily cycling counts, weather and beer prices from Munich open data.", "",
   sprintf("- Cycling data: %d station-day rows across %d stations (%s to %s).",nrow(bike),nrow(station),min(bike$date),max(bike$date)),
   sprintf("- Direction-count inconsistencies: %d. They are reported, not silently corrected.",nrow(bad_total)),
   sprintf("- Arnulf sunshine association: Pearson r = %.3f (n = %d).",observed,nrow(a)),
   sprintf("- Exploratory two-sided permutation p = %.4f, using 9,999 permutations and a +1 correction.",p),
   sprintf("- Beer prices: %d observations; EUR %.2f (%d) to EUR %.2f (%d), a nominal increase of %.1f%%.",nrow(beer),first$bier_preis,first$jahr,last$bier_preis,last$jahr,change),
-  "", "## Interpretation and limitations", "",
-  "The weather association is descriptive, not a causal weather effect. Permutation assumes exchangeable observations; temporal dependence, weekday patterns and common weather conditions can violate that assumption. The p-value is a teaching exercise, not confirmatory evidence.",
-  "Station counts are not unique cyclists or a citywide census. A zero may reflect missing operation; no automatic imputation is performed. September 2022 and January 2024 exercises must not be conflated.",
-  "Price changes compare consecutive available records. Missing years are not interpolated; nominal changes are not changes in real purchasing power.",
+  "", "## Reading the results", "",
+  "The sunshine correlation describes 30 days at Arnulf. Weekday patterns and serial dependence also affect daily traffic; the permutation test assumes exchangeable observations.",
+  "The station totals measure bicycle passages in September 2022. Zero counts and missing values are retained in the quality checks.",
+  "Price changes compare consecutive available observations. Prices are reported in nominal euros, and gaps in the series are retained.",
   "", "## Figures", "", "![Station counts](../figures/cycling_by_station.png)",
   "![Weather association](../figures/sunshine_arnulf.png)", "![Prices](../figures/oktoberfest_prices.png)")
 writeLines(lines,"results/REPORT.md",useBytes=TRUE)
